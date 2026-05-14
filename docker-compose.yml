@@ -1,0 +1,22 @@
+services:
+  db:
+    image: docker.io/library/postgres:18-alpine
+    container_name: pg
+    env_file: .env
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: em_test_task
+    depends_on:
+      db:
+        condition: service_healthy
+    env_file: .env
+    ports:
+      - ${SERVICE_PORT}:${SERVICE_PORT}
