@@ -35,7 +35,7 @@ func scanSubscription(row Scannable) (*Subscription, error) {
 
 	sub.StartDate = startDate.Format(MONTH_YEAR_LAYOUT)
 	if endDate.Valid {
-		ed := startDate.Format(MONTH_YEAR_LAYOUT)
+		ed := endDate.Time.Format(MONTH_YEAR_LAYOUT)
 		sub.EndDate = &ed
 	}
 
