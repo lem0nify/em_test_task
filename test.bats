@@ -66,7 +66,7 @@ SERVICE_URL="http://localhost:8080"
         -d '{
                 "service_name": "Yandex Plus",
                 "price": 400,
-                "user_id": "60601fee-2bf1-4721-ae6f-7636e79a0cba",
+                "user_id": "60601fee-2bf1-4721-ae6f-7636e79a0cba"
             }' \
         -w '%{http_code}')
 
